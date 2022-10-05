@@ -1,6 +1,6 @@
 #include "Experiment2.h"
 
-StaPtr Find_First_Bracket(char* src, int len)//ÕÒµ½ÖÁÉÙÒ»¸öÓÒÀ¨ºÅ£¬²¢³õÊ¼»¯Õ»£¬ÈôÃ»ÕÒµ½ÓÒÀ¨ºÅÔò·µ»ØNULLÖµ
+StaPtr Find_First_Bracket(char* src, int len)//æ‰¾åˆ°è‡³å°‘ä¸€ä¸ªå³æ‹¬å·ï¼Œå¹¶åˆå§‹åŒ–æ ˆï¼Œè‹¥æ²¡æ‰¾åˆ°å³æ‹¬å·åˆ™è¿”å›NULLå€¼
 {
 	StaPtr RetPtr;
 	while (len > 0 && !Is_Bracket(src[len - 1])) len--;
@@ -17,7 +17,7 @@ StaPtr Find_First_Bracket(char* src, int len)//ÕÒµ½ÖÁÉÙÒ»¸öÓÒÀ¨ºÅ£¬²¢³õÊ¼»¯Õ»£¬È
 
 	return RetPtr;
 }
-int Find_Bracket(StaPtr s, char* src, int len)//Ìø¹ıÊı×ÖÕÒµ½ÏÂÒ»¸öÓÒÀ¨ºÅ²¢·µ»Ø¶ÔÓ¦µÄlenÖµ£¬Ã»ÕÒµ½ÓÒÀ¨ºÅÔò·µ»Ø0
+int Find_Bracket(StaPtr s, char* src, int len)//è·³è¿‡æ•°å­—æ‰¾åˆ°ä¸‹ä¸€ä¸ªå³æ‹¬å·å¹¶è¿”å›å¯¹åº”çš„lenå€¼ï¼Œæ²¡æ‰¾åˆ°å³æ‹¬å·åˆ™è¿”å›0
 {
 	while (len > 0 && !Is_Bracket(src[len - 1])) len--;
 	if (Is_Bracket(src[len - 1]))
@@ -28,7 +28,7 @@ int Find_Bracket(StaPtr s, char* src, int len)//Ìø¹ıÊı×ÖÕÒµ½ÏÂÒ»¸öÓÒÀ¨ºÅ²¢·µ»Ø¶Ô
 
 	return len;
 }
-int Find_Operator(StaPtr s, char* src, int len)//Ìø¹ıÊı×ÖÕÒµ½ÏÂÒ»¸öÔËËã·û£¬Ã»ÕÒµ½Ôò·µ»Ø0£¬Í¬Ê±ÔÚ²éÕÒ¹ı³ÌÖĞÈô·¢ÏÖÓÒÀ¨ºÅÔò½«ÆäÈëÕ»
+int Find_Operator(StaPtr s, char* src, int len)//è·³è¿‡æ•°å­—æ‰¾åˆ°ä¸‹ä¸€ä¸ªè¿ç®—ç¬¦ï¼Œæ²¡æ‰¾åˆ°åˆ™è¿”å›0ï¼ŒåŒæ—¶åœ¨æŸ¥æ‰¾è¿‡ç¨‹ä¸­è‹¥å‘ç°å³æ‹¬å·åˆ™å°†å…¶å…¥æ ˆ
 {
 	while (len > 0 && !Is_Operator(src[len - 1]))
 	{
@@ -51,7 +51,7 @@ int Find_Operator(StaPtr s, char* src, int len)//Ìø¹ıÊı×ÖÕÒµ½ÏÂÒ»¸öÔËËã·û£¬Ã»ÕÒµ
 
 	return len;
 }
-int Add_Bracket(StaPtr s, char* src,int * flag, int len)//Õ»¶¥ÎªÔËËã·ûÊ±½øĞĞÌí¼Ó×óÀ¨ºÅ²Ù×÷£¬Í¬Ê±½øĞĞ³öÕ»²Ù×÷
+int Add_Bracket(StaPtr s, char* src,int * flag, int len)//æ ˆé¡¶ä¸ºè¿ç®—ç¬¦æ—¶è¿›è¡Œæ·»åŠ å·¦æ‹¬å·æ“ä½œï¼ŒåŒæ—¶è¿›è¡Œå‡ºæ ˆæ“ä½œ
 {
 	while (len > 0 && !Is_Operator(src[len - 1]) && !Is_Bracket(src[len - 1]))	len--;
 	flag[len]++;
@@ -59,11 +59,11 @@ int Add_Bracket(StaPtr s, char* src,int * flag, int len)//Õ»¶¥ÎªÔËËã·ûÊ±½øĞĞÌí¼Ó
 	pop(s);
 	return len;
 }
-int Is_Operator(char c)//¼ì²âÊÇ·ñÊÇÔËËã·û£¬ÊÇÔò·µ»Ø1£¬·ñÔò·µ»Ø0
+int Is_Operator(char c)//æ£€æµ‹æ˜¯å¦æ˜¯è¿ç®—ç¬¦ï¼Œæ˜¯åˆ™è¿”å›1ï¼Œå¦åˆ™è¿”å›0
 {
 	return(c == '*' || c == '/' || c == '+' || c == '-');
 }
-int Is_Bracket(char c)//¼ì²âÊÇ·ñÎªÓÒÀ¨ºÅ£¬ÊÇÔò·µ»Ø1£¬·ñÔò·µ»Ø0
+int Is_Bracket(char c)//æ£€æµ‹æ˜¯å¦ä¸ºå³æ‹¬å·ï¼Œæ˜¯åˆ™è¿”å›1ï¼Œå¦åˆ™è¿”å›0
 {
 	return (c == ')');
 }
