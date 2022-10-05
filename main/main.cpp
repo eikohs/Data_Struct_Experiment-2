@@ -1,6 +1,6 @@
 #include "Experiment2.h"
 
-/*²âÊÔÓÃÀı£º
+/*æµ‹è¯•ç”¨ä¾‹ï¼š
 1+2)*3-4)*5-6)))
 x*y-a)/a-b)+c)
 1+1+1+1+1+1
@@ -19,8 +19,8 @@ yes)
 int main(void)
 {
 #if TEST
-    int len;//ÏÂÃæµÄ³ÌĞòÍ¨¹ıÔËĞĞµÄ½á¹ûÖ¤Ã÷ÁËÃ¿¸öº¯ÊıµÄÕıÈ·ĞÔ
-    char* Test_Str = Get_Line();//´Ë´¦ÊäÈë²âÊÔÓÃÀıµÄµÚÒ»¸öÓÃÀı
+    int len;//ä¸‹é¢çš„ç¨‹åºé€šè¿‡è¿è¡Œçš„ç»“æœè¯æ˜äº†æ¯ä¸ªå‡½æ•°çš„æ­£ç¡®æ€§
+    char* Test_Str = Get_Line();//æ­¤å¤„è¾“å…¥æµ‹è¯•ç”¨ä¾‹çš„ç¬¬ä¸€ä¸ªç”¨ä¾‹
     len = strlen(Test_Str);
     printf("%d\n%s\n",len, Test_Str);
     StaPtr TestExperi = Find_First_Bracket(Test_Str, len);
@@ -53,37 +53,37 @@ int main(void)
 #elif !(PROGRAM_MODE-1)
     char Flag;
     char* Src;
-    int BLANK[MAXCAP] = {0}, Len;//BLANKÊı×éÖĞBLANK[i]´ú±íÊäÈë×Ö·û´®ÖĞµÚi¸ö×Ö·ûÇ°ÃæÓ¦¸Ã¼ÓÈëµÄÀ¨ºÅÊıÁ¿
+    int BLANK[MAXCAP] = {0}, Len;//BLANKæ•°ç»„ä¸­BLANK[i]ä»£è¡¨è¾“å…¥å­—ç¬¦ä¸²ä¸­ç¬¬iä¸ªå­—ç¬¦å‰é¢åº”è¯¥åŠ å…¥çš„æ‹¬å·æ•°é‡
 
     while (1)
     {
         Src = Get_Line();
         Len = strlen(Src);
-        for (int i = 0; i < Len; i++) BLANK[i] = 0;//³õÊ¼»¯BLANKÊı×éÎªÁã
-        StaPtr Sentence = Find_First_Bracket(Src, Len);//³õÊ¼»¯Æ¥Åä£¬ÓĞÓÒÀ¨ºÅÊ±²ÅÆô¶¯Æ¥Åä£¬·ñÔòÖ±½ÓÊä³ö
+        for (int i = 0; i < Len; i++) BLANK[i] = 0;//åˆå§‹åŒ–BLANKæ•°ç»„ä¸ºé›¶
+        StaPtr Sentence = Find_First_Bracket(Src, Len);//åˆå§‹åŒ–åŒ¹é…ï¼Œæœ‰å³æ‹¬å·æ—¶æ‰å¯åŠ¨åŒ¹é…ï¼Œå¦åˆ™ç›´æ¥è¾“å‡º
         if (Sentence != NULL)
         {
-            BLANK[0]++;//³õÊ¼»¯³É¹¦£¬Ìí¼ÓÒ»¸öÀ¨×¡Õû¸öÊ½×ÓµÄÀ¨ºÅ
-            Len = Sentence->capacity;//¸üĞÂĞèÒª´¦ÀíµÄ±í´ïÊ½µÄ³¤¶È
-            while (Len > 0)//´Ë´¦Í¨¹ıÑ­»·Æ¥ÅäÓÒÀ¨ºÅ
+            BLANK[0]++;//åˆå§‹åŒ–æˆåŠŸï¼Œæ·»åŠ ä¸€ä¸ªæ‹¬ä½æ•´ä¸ªå¼å­çš„æ‹¬å·
+            Len = Sentence->capacity;//æ›´æ–°éœ€è¦å¤„ç†çš„è¡¨è¾¾å¼çš„é•¿åº¦
+            while (Len > 0)//æ­¤å¤„é€šè¿‡å¾ªç¯åŒ¹é…å³æ‹¬å·
             {
-                if (Top_Element(Sentence) == '#') Len = Find_Bracket(Sentence, Src, Len);//Ã»ÓĞÓÒÀ¨ºÅÊ±ÕÒµ½ÓÒÀ¨ºÅ
-                while (Is_Bracket(Top_Element(Sentence))&&Len > 0) Len = Find_Operator(Sentence, Src, Len);//ÓĞÓÒÀ¨ºÅÊ±ÕÒµ½ÔËËã·û
-                while (Is_Operator(Top_Element(Sentence))&&Len > 0) Len = Add_Bracket(Sentence, Src, BLANK, Len);//ÓĞÔËËã·ûÊ±Ìí¼Ó×óÀ¨ºÅÏû³ıÓÒÀ¨ºÅ
-                if(DEBUG&&WHETHER_PRINT) printf("Len:%d Top:%c\n", Len, Top_Element(Sentence));//´ËĞĞµ÷ÊÔÓÃ
+                if (Top_Element(Sentence) == '#') Len = Find_Bracket(Sentence, Src, Len);//æ²¡æœ‰å³æ‹¬å·æ—¶æ‰¾åˆ°å³æ‹¬å·
+                while (Is_Bracket(Top_Element(Sentence))&&Len > 0) Len = Find_Operator(Sentence, Src, Len);//æœ‰å³æ‹¬å·æ—¶æ‰¾åˆ°è¿ç®—ç¬¦
+                while (Is_Operator(Top_Element(Sentence))&&Len > 0) Len = Add_Bracket(Sentence, Src, BLANK, Len);//æœ‰è¿ç®—ç¬¦æ—¶æ·»åŠ å·¦æ‹¬å·æ¶ˆé™¤å³æ‹¬å·
+                if(DEBUG&&WHETHER_PRINT) printf("Len:%d Top:%c\n", Len, Top_Element(Sentence));//æ­¤è¡Œè°ƒè¯•ç”¨
             }
-            while (Top_Element(Sentence) != '#')//´¦Àí¶àÓàµÄÓÒÀ¨ºÅ
+            while (Top_Element(Sentence) != '#')//å¤„ç†å¤šä½™çš„å³æ‹¬å·
             {
                 if (Top_Element(Sentence) == ')')   BLANK[0]++;
                 pop(Sentence);
             }
         }
-        if (DEBUG) puts("Solution:");//´ËĞĞµ÷ÊÔÓÃ
-        PRINT_SENTENCE(Src, BLANK);//´òÓ¡×îÖÕ½á¹û
-        Dispose_Stack(Sentence);//Çå³ıÕ»
-        free(Src);//Çå³ıÊäÈëµÄ×Ö·û´®
-        if (DEBUG) putchar('\n');//´ËĞĞµ÷ÊÔÓÃ
-        if (!DEBUG)//ÕâÒ»¶Î·Çµ÷ÊÔÊ±¼ÓÈë
+        if (DEBUG) puts("Solution:");//æ­¤è¡Œè°ƒè¯•ç”¨
+        PRINT_SENTENCE(Src, BLANK);//æ‰“å°æœ€ç»ˆç»“æœ
+        Dispose_Stack(Sentence);//æ¸…é™¤æ ˆ
+        free(Src);//æ¸…é™¤è¾“å…¥çš„å­—ç¬¦ä¸²
+        if (DEBUG) putchar('\n');//æ­¤è¡Œè°ƒè¯•ç”¨
+        if (!DEBUG)//è¿™ä¸€æ®µéè°ƒè¯•æ—¶åŠ å…¥
         {
             printf("Want to run again?(q/Q to quit):");
             while ((Flag = getchar()) == '\n') continue;
