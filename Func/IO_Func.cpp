@@ -1,6 +1,6 @@
 #include "Experiment2.h"
 
-char* Get_Line(void)//´Ó±ê×¼ÊäÈëÀï¶ÁÈ¡Ò»ÐÐ×î´óÈÝÁ¿MAXCAPµÄ×Ö·û²¢·µ»ØÖ¸Õë
+char* Get_Line(void)//ä»Žæ ‡å‡†è¾“å…¥é‡Œè¯»å–ä¸€è¡Œæœ€å¤§å®¹é‡MAXCAPçš„å­—ç¬¦å¹¶è¿”å›žæŒ‡é’ˆ
 {
 	char TmpStr[MAXCAP], c;
 	int Len;
@@ -17,7 +17,7 @@ char* Get_Line(void)//´Ó±ê×¼ÊäÈëÀï¶ÁÈ¡Ò»ÐÐ×î´óÈÝÁ¿MAXCAPµÄ×Ö·û²¢·µ»ØÖ¸Õë
 
 	return RetPtr;
 }
-void PRINT_SENTENCE(char* src, int* flag)//´òÓ¡×îºó²¹³äÀ¨ºÅºóµÄ±í´ïÊ½
+void PRINT_SENTENCE(char* src, int* flag)//æ‰“å°æœ€åŽè¡¥å……æ‹¬å·åŽçš„è¡¨è¾¾å¼
 {
 	for (int i = 0; i < strlen(src); i++)
 	{
@@ -26,7 +26,7 @@ void PRINT_SENTENCE(char* src, int* flag)//´òÓ¡×îºó²¹³äÀ¨ºÅºóµÄ±í´ïÊ½
 	}
 	putchar('\n');
 }
-char* Get_Sting(void)//´Ó±ê×¼ÊäÈëÀï¶ÁÈ¡Ò»¶ÎÒÔ#½áÎ²µÄ×Ö·û´®
+char* Get_Sting(void)//ä»Žæ ‡å‡†è¾“å…¥é‡Œè¯»å–ä¸€æ®µä»¥#ç»“å°¾çš„å­—ç¬¦ä¸²
 {
 	char TmpStr[MAXCAP], c;
 	int Len;
