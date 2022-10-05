@@ -1,16 +1,16 @@
 #include "Experiment2.h"
 
-int isFull(StaPtr sta)//ÅÐÂú
+int isFull(StaPtr sta)//åˆ¤æ»¡
 {
     if (sta == NULL) exit(1);
     else return(sta->top == sta->capacity - 1);
 }
-int isEmpty(StaPtr sta)//ÅÐ¿Õ
+int isEmpty(StaPtr sta)//åˆ¤ç©º
 {
     if (sta == NULL) exit(1);
     else return(sta->top == EmptyTop);
 }
-StaPtr Creat_Stack(int Capacity)//Õ»µÄ´´½¨
+StaPtr Creat_Stack(int Capacity)//æ ˆçš„åˆ›å»º
 {
     StaPtr RetPtr = (StaPtr)malloc(sizeof(Stack));
     if (RetPtr == NULL) exit(1);
@@ -21,7 +21,7 @@ StaPtr Creat_Stack(int Capacity)//Õ»µÄ´´½¨
 
     return (RetPtr);
 }
-void Dispose_Stack(StaPtr sta)//Õ»µÄÊÍ·Å
+void Dispose_Stack(StaPtr sta)//æ ˆçš„é‡Šæ”¾
 {
     if (sta != NULL)
     {
@@ -30,25 +30,25 @@ void Dispose_Stack(StaPtr sta)//Õ»µÄÊÍ·Å
         if(TEST) printf("Stack cleared\n");
     }
 }
-void push(element Tmp, StaPtr sta)//ÈëÕ»
+void push(element Tmp, StaPtr sta)//å…¥æ ˆ
 {
     if (!isFull(sta))
         sta->Array[++sta->top] = Tmp;
     else
         printf("Stack Full!!\n!");
 }
-element Top_Element(StaPtr sta)//·µ»ØÕ»¶¥ÔªËØ
+element Top_Element(StaPtr sta)//è¿”å›žæ ˆé¡¶å…ƒç´ 
 {
     return (sta->Array[sta->top]);
 }
-void pop(StaPtr sta)//³öÕ»
+void pop(StaPtr sta)//å‡ºæ ˆ
 {
     if (!isEmpty(sta))
         sta->top--;
     else
         printf("Stack Empty!!!\n");
 }
-element Top_Pop_Element(StaPtr sta)//³öÕ»²¢·µ»Ø³öÕ»ÔªËØ
+element Top_Pop_Element(StaPtr sta)//å‡ºæ ˆå¹¶è¿”å›žå‡ºæ ˆå…ƒç´ 
 {
     if (!isEmpty(sta))
         return (sta->Array[sta->top--]);
