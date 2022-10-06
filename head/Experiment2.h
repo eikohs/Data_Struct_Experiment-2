@@ -6,36 +6,57 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define TEST 0//1ä»£è¡¨è¿›å…¥å‡½æ•°æµ‹è¯•æ¨¡å¼ï¼Œ0åˆ™åä¹‹
-#define DEBUG 1//1ä»£è¡¨è°ƒè¯•æ¨¡å¼ï¼Œ0åˆ™åä¹‹
-#define WHETHER_PRINT 1//1ä»£è¡¨é€šè¿‡æ‰“å°è°ƒè¯•ï¼Œ0åˆ™åä¹‹
-//æäº¤æ—¶ä¸Šè¿°ä¸‰è€…åº”åŒæ—¶ç½®é›¶
-#define PROGRAM_MODE 1//1ä»£è¡¨é¢˜ç›®ä¸€ï¼Œ2ä»£è¡¨é¢˜ç›®äºŒï¼Œåªèƒ½æ˜¯äºŒè€…ä¹‹ä¸€
-#define MAXCAP 100//ä»£è¡¨æ ˆçš„æœ€å¤§å®¹é‡
-#define EmptyTop -1//ä»£è¡¨ç©ºæ ˆæ—¶topçš„å€¼
+#define TEST 0//1´ú±í½øÈëº¯Êı²âÊÔÄ£Ê½£¬0Ôò·´Ö®
+#define DEBUG 1//1´ú±íµ÷ÊÔÄ£Ê½£¬0Ôò·´Ö®
+#define WHETHER_PRINT 0//1´ú±íÍ¨¹ı´òÓ¡µ÷ÊÔ£¬0Ôò·´Ö®
+//Ìá½»Ê±ÉÏÊöÈıÕßÓ¦Í¬Ê±ÖÃÁã
+#define PROGRAM_MODE 2//1´ú±íÌâÄ¿Ò»£¬2´ú±íÌâÄ¿¶ş£¬Ö»ÄÜÊÇ¶şÕßÖ®Ò»
+#define MAXCAP 200//´ú±íÕ»µÄ×î´óÈİÁ¿
+#define EmptyTop -1//´ú±í¿ÕÕ»Ê±topµÄÖµ
 
 typedef char element;
 
 typedef struct STACK {
     element* Array;
-    int top;//ä»£è¡¨æ ˆé¡¶å…ƒç´ 
-    int capacity;//æ ˆçš„å®¹é‡
+    int top;//´ú±íÕ»¶¥ÔªËØ
+    int capacity;//Õ»µÄÈİÁ¿
 }Stack, * StaPtr;
 
-StaPtr Find_First_Bracket(char* src, int len);//æ‰¾åˆ°è‡³å°‘ä¸€ä¸ªå³æ‹¬å·ï¼Œå¹¶åˆå§‹åŒ–æ ˆ
-int Find_Bracket(StaPtr s, char* src, int len);//è·³è¿‡æ•°å­—æ‰¾åˆ°ä¸‹ä¸€ä¸ªå³æ‹¬å·
-int Find_Operator(StaPtr s, char* src, int len);//è·³è¿‡æ•°å­—æ‰¾åˆ°ä¸‹ä¸€ä¸ªè¿ç®—ç¬¦
-int Add_Bracket(StaPtr s, char* src, int* flag, int len);//æ ˆé¡¶ä¸ºè¿ç®—ç¬¦æ—¶è¿›è¡Œæ·»åŠ å·¦æ‹¬å·æ“ä½œ
-int Is_Operator(char c);//æ£€æµ‹æ˜¯å¦æ˜¯è¿ç®—ç¬¦ï¼Œæ˜¯åˆ™è¿”å›1ï¼Œå¦åˆ™è¿”å›0
-int Is_Bracket(char c);//æ£€æµ‹æ˜¯å¦ä¸ºå³æ‹¬å·ï¼Œæ˜¯åˆ™è¿”å›1ï¼Œå¦åˆ™è¿”å›0
-int isFull(StaPtr sta);//åˆ¤æ»¡
-int isEmpty(StaPtr sta);//åˆ¤ç©º
-StaPtr Creat_Stack(int Capacity);//æ ˆçš„åˆ›å»º
-void Dispose_Stack(StaPtr sta);//æ ˆçš„é‡Šæ”¾
-void push(element tmp, StaPtr sta);//å…¥æ ˆ
-element Top_Element(StaPtr sta);//è¿”å›æ ˆé¡¶å…ƒç´ 
-void pop(StaPtr sta);//å‡ºæ ˆ
-element Top_Pop_Element(StaPtr sta);//å‡ºæ ˆå¹¶è¿”å›å‡ºæ ˆå…ƒç´ 
-char* Get_Line(void);//ä»æ ‡å‡†è¾“å…¥é‡Œè¯»å–ä¸€è¡Œæœ€å¤§å®¹é‡MAXCAPçš„å­—ç¬¦å¹¶è¿”å›æŒ‡é’ˆ
-char* Get_Sting(void);//ä»æ ‡å‡†è¾“å…¥é‡Œè¯»å–ä¸€æ®µä»¥#ç»“å°¾çš„å­—ç¬¦ä¸²
-void PRINT_SENTENCE(char* src, int* flag);//æ‰“å°æœ€åè¡¥å……æ‹¬å·åçš„è¡¨è¾¾å¼
+typedef struct NODE
+{
+    element Content;
+    struct NODE* next;
+}Node, * NodePtr;
+typedef struct QUEUE
+{
+    NodePtr front;
+    NodePtr end;
+}Queue, * QueuePtr;
+
+StaPtr Find_First_Bracket(char* src, int len);//ÕÒµ½ÖÁÉÙÒ»¸öÓÒÀ¨ºÅ£¬²¢³õÊ¼»¯Õ»
+int Find_Bracket(StaPtr s, char* src, int len);//Ìø¹ıÊı×ÖÕÒµ½ÏÂÒ»¸öÓÒÀ¨ºÅ
+int Find_Operator(StaPtr s, char* src, int len);//Ìø¹ıÊı×ÖÕÒµ½ÏÂÒ»¸öÔËËã·û
+int Add_Bracket(StaPtr s, char* src, int* flag, int len);//Õ»¶¥ÎªÔËËã·ûÊ±½øĞĞÌí¼Ó×óÀ¨ºÅ²Ù×÷
+int Is_Operator(char c);//¼ì²âÊÇ·ñÊÇÔËËã·û£¬ÊÇÔò·µ»Ø1£¬·ñÔò·µ»Ø0
+int Is_Bracket(char c);//¼ì²âÊÇ·ñÎªÓÒÀ¨ºÅ£¬ÊÇÔò·µ»Ø1£¬·ñÔò·µ»Ø0
+int Judge_Ret(StaPtr s, QueuePtr que);//¼ì²âÊÇ·ñÎª»ØÎÄĞòÁĞ£¬ÊÇÔò·µ»Ø1£¬·ñÔò·µ»Ø0
+int isFull(StaPtr sta);//ÅĞÂú
+int isEmpty(StaPtr sta);//ÅĞ¿Õ
+StaPtr Creat_Stack(int Capacity);//Õ»µÄ´´½¨
+void Dispose_Stack(StaPtr sta);//Õ»µÄÊÍ·Å
+void push(element tmp, StaPtr sta);//ÈëÕ»
+element Top_Element(StaPtr sta);//·µ»ØÕ»¶¥ÔªËØ
+void pop(StaPtr sta);//³öÕ»
+element Top_Pop_Element(StaPtr sta);//³öÕ»²¢·µ»Ø³öÕ»ÔªËØ
+void PRINT_STACK(StaPtr sta);//´òÓ¡Õ»µÄËùÓĞÔªËØ
+QueuePtr Create_Queue(void);//´´½¨Ò»¸ö¿Õ¶ÓÁĞ
+void push_que(element tmp, QueuePtr que);//Èë¶ÓÁĞ
+void pop_que(QueuePtr que);//³ö¶ÓÁĞ
+element Top_Que(QueuePtr que);//È¡¶ÓÁĞÊ×ÔªËØ
+element Top_Pop_Que(QueuePtr que);//³ö¶ÓÁĞ²¢·µ»Ø³ö¶ÓÁĞÔªËØ
+int Que_Empty(QueuePtr que);//¶ÓÁĞÅĞ¿Õ
+void Dispose_Que(QueuePtr que);//ÊÍ·Å¶ÓÁĞ
+void PRINT_QUE(QueuePtr que);//´òÓ¡¶ÓÁĞµÄËùÓĞÔªËØ
+char* Get_Line(void);//´Ó±ê×¼ÊäÈëÀï¶ÁÈ¡Ò»ĞĞ×î´óÈİÁ¿MAXCAPµÄ×Ö·û²¢·µ»ØÖ¸Õë
+int Get_Chars(StaPtr s, QueuePtr que);//´Ó±ê×¼ÊäÈëÖĞ¶ÁÈ¡ÒÔ#½áÎ²µÄ×Ö·û´®
+void PRINT_SENTENCE(char* src, int* flag);//´òÓ¡×îºó²¹³äÀ¨ºÅºóµÄ±í´ïÊ½
