@@ -1,0 +1,109 @@
+#include<stdio.h>
+#include<malloc.h>
+typedef struct Str{
+	char data;
+	struct Str* next;
+}str,*ptrstr;
+typedef struct Queue{
+	ptrstr front;
+	ptrstr rear;
+}*queue;
+
+ptrstr createstr()//创建带头节点的空链表，返回头指针 
+{
+	ptrstr str1 = (ptrstr)malloc(sizeof(str));
+	if(str1 != NULL){
+		str1->next = NULL;
+	}
+	return str1;
+}
+
+queue createqueue()//创建 队头指针和队尾指针，返回 结点Q 
+{
+	queue Q;
+	Q->front = NULL;
+	Q->rear = NULL;
+	return Q;
+}
+
+ptrstr insert(ptrstr temp,char e)//在链表尾部插入新元素 
+{
+	ptrstr cur = (ptrstr)malloc(sizeof(struct Str));
+	temp->next = cur;
+	cur->next = NULL; 
+	cur->data = e;
+}
+
+ptrstr findend(ptrstr s)//找到尾节点，返回指向尾节点的指针 
+{
+	ptrstr cur = s;
+	for(;cur->next!=NULL;cur = cur->next){}
+	return cur;
+}
+
+ptrstr popstr(ptrstr s)//在表尾移出最后一个元素 ，返回指向被移出的结点的指针 
+{
+	ptrstr cur = s,temp;
+	for(;cur->next->next!=NULL;cur = cur->next){}
+	temp = cur->next;
+	cur->next = NULL;
+	return temp;
+}
+
+int compare(ptrstr s1,ptrstr s2)//比较两个链表是否相同，若相同则返回1，否则返回0
+{
+	int is = 1;
+	ptrstr cur1 = s1->next,cur2 = s2->next;
+	for(;cur1 != NULL;cur1 = cur1->next,cur2 = cur2->next)
+	{
+		if(cur1->data != cur2->data){
+			is = 0;
+			break;
+		}
+	}
+	return is;
+} 
+
+void printresult(int is)//打印结果 
+{
+	if(is){
+		printf("s is a Palindromic-string.");
+	}
+	else{
+		printf("s is not a Palindromic-string.");
+	}
+}
+
+void getstr(ptrstr s1,ptrstr s3)//录入字符串 
+{
+	char ch;
+	ptrstr  cur,temp; 
+	scanf("%c",&ch);
+	for(;ch != '#';)
+	{
+		temp = findend(s1),cur = findend(s3);
+		insert(temp,ch);
+		insert(cur,ch);
+		scanf("%c",&ch);
+	}
+}
+void invertion(ptrstr s1,ptrstr s2)//倒置字符串，并录入另一个链表中    输入：s1是原链表，s2是待录入的倒置字符串链表 
+{
+	ptrstr cur = findend(s1),temp;
+	for(;s1->next != NULL;cur = findend(s1)){
+		temp = popstr(s1);
+		findend(s2)->next = temp;
+		temp->next = NULL;
+	}
+}
+int main(void)
+{
+	ptrstr s1 = createstr();
+	ptrstr s2 = createstr();
+	ptrstr s3 = createstr();
+  getstr(s1,s3);
+  invertion(s3,s2);
+  printresult(compare(s1,s2));
+    
+	return 0;
+}
